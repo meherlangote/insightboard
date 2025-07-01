@@ -1,0 +1,31 @@
+/* Custom CSS for hover effect on sidebar radio buttons and main elements */
+
+.stRadio > div > label:hover {
+    color: #0056b3 !important; /* hover color */
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.stButton>button:hover {
+    background-color: #0056b3 !important;
+    color: white !important;
+    transition: background-color 0.3s ease;
+}
+
+h1, h2, h3, p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.stDataFrame {
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* Responsive padding */
+@media (max-width: 768px) {
+    .main > div {
+        padding: 0 10px !important;
+    }
+}
