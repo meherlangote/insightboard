@@ -91,3 +91,35 @@ input[type="file"] {
                 0 0 35px rgba(58, 129, 199, 0.8);
     background-color: #2a2d34;
 }
+
+/* Glowing and Animated Sidebar Radio Buttons */
+div[data-baseweb="radio"] > div {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px;
+}
+
+div[data-baseweb="radio"] label {
+    background-color: #1E1E1E;
+    border: 2px solid #3A81C7;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 6px rgba(58, 129, 199, 0.3);
+}
+
+div[data-baseweb="radio"] label:hover {
+    cursor: pointer;
+    background-color: #2a2d34;
+    transform: scale(1.03);
+    box-shadow: 0 0 12px rgba(58, 129, 199, 0.7);
+}
+
+div[data-baseweb="radio"] input:checked + div {
+    background-color: #3A81C7 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(58, 129, 199, 0.8);
+}

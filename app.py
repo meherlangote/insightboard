@@ -8,6 +8,51 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+st.markdown("""
+    <style>
+    /* Sidebar title */
+    .sidebar .css-1d391kg {  /* header */
+        color: #3A81C7;
+        font-weight: 700;
+    }
+
+    /* Sidebar radio container */
+    section[data-testid="stSidebar"] .stRadio > div {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 10px;
+    }
+
+    /* Each option */
+    section[data-testid="stSidebar"] .stRadio > div > label {
+        background-color: #1E1E1E;
+        border: 2px solid #3A81C7;
+        border-radius: 12px;
+        padding: 10px 18px;
+        font-weight: 600;
+        color: #ffffff;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 6px rgba(58, 129, 199, 0.4);
+    }
+
+    /* Hover effect */
+    section[data-testid="stSidebar"] .stRadio > div > label:hover {
+        background-color: #2a2d34;
+        transform: scale(1.02);
+        box-shadow: 0 0 12px rgba(58, 129, 199, 0.8);
+        cursor: pointer;
+    }
+
+    /* Selected radio */
+    section[data-testid="stSidebar"] .stRadio > div > label[data-selected="true"] {
+        background-color: #3A81C7 !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 15px rgba(58, 129, 199, 1);
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 
 # Inject global styles
 with open("assets/styles.css") as f:
@@ -65,9 +110,14 @@ if uploaded_file:
 
         st.markdown("---")
 
-        section = st.sidebar.radio("Select EDA Section", 
-                           ["Data Overview", "Data Summary", "Missing Values", "Univariate Analysis", 
-                            "Bivariate Analysis", "Multivariate Analysis", "Outlier Detection"])
+        with st.sidebar:
+            st.markdown("## Select EDA Section", unsafe_allow_html=True)
+            section = st.radio(
+                "",
+                ["Data Overview", "Data Summary", "Missing Values", "Univariate Analysis",
+                "Bivariate Analysis", "Multivariate Analysis", "Outlier Detection"]
+            )
+
 
         try:
             if section == "Data Overview":
