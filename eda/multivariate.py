@@ -25,14 +25,14 @@ def show_multivariate(df: pd.DataFrame):
     st.plotly_chart(fig, use_container_width=True)
 
     # --- Seaborn Pairplot (static image) ---
-    st.subheader("Pairplot (static image using Seaborn)")
+    st.subheader("Pairplot")  #(static image using Seaborn)
 
     try:
         selected_cols = numeric_cols[:5]  # Limit to 5 for readability
         sns_plot = sns.pairplot(df[selected_cols])
         buf = BytesIO()
         sns_plot.savefig(buf, format="png")
-        st.image(buf.getvalue(), caption="Pairplot (Seaborn)", use_column_width=True)
+        st.image(buf.getvalue(), caption="Pairplot", use_column_width=True)
     except Exception as e:
         st.error(f"Error generating pairplot: {e}")
 

@@ -8,12 +8,66 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+# st.markdown("""
+#     <style>
+#     /* Sidebar title */
+#     .sidebar .css-1d391kg {  /* header */
+#         color: #3A81C7;
+#         font-weight: 700;
+#     }
+
+#     /* Sidebar radio container */
+#     section[data-testid="stSidebar"] .stRadio > div {
+#         display: flex;
+#         flex-direction: column;
+#         gap: 12px;
+#         padding: 10px;
+#     }
+
+#     /* Each option */
+#     section[data-testid="stSidebar"] .stRadio > div > label {
+#         background-color: #1E1E1E;
+#         border: 1px solid #3A81C7;
+#         border-radius: 12px;
+#         padding: 10px 18px;
+#         font-weight: 600;
+#         color: #ffffff;
+#         transition: all 0.3s ease;
+#         box-shadow: 0 0 6px rgba(58, 129, 199, 0.4);
+#     }
+
+#     /* Hover effect */
+#     section[data-testid="stSidebar"] .stRadio > div > label:hover {
+#         background-color: #2a2d34;
+#         transform: scale(1.02);
+#         box-shadow: 0 0 12px rgba(58, 129, 199, 0.8);
+#         cursor: pointer;
+#     }
+
+#     /* Selected radio */
+#     section[data-testid="stSidebar"] .stRadio > div > label[data-selected="true"] {
+#         background-color: #3A81C7 !important;
+#         color: #ffffff !important;
+#         box-shadow: 0 0 15px rgba(58, 129, 199, 1);
+#     }
+#     </style>
+# """, unsafe_allow_html=True)
+
 st.markdown("""
     <style>
-    /* Sidebar title */
-    .sidebar .css-1d391kg {  /* header */
+    /* Sidebar header title */
+    .sidebar .css-1d391kg {
         color: #3A81C7;
         font-weight: 700;
+    }
+
+    /* Adjust sidebar width and allow user to resize */
+    section[data-testid="stSidebar"] {
+        min-width: 180px;
+        max-width: 280px;
+        width: 260px;
+        resize: horizontal;
+        overflow: auto;
     }
 
     /* Sidebar radio container */
@@ -24,10 +78,10 @@ st.markdown("""
         padding: 10px;
     }
 
-    /* Each option */
+    /* Each radio option */
     section[data-testid="stSidebar"] .stRadio > div > label {
         background-color: #1E1E1E;
-        border: 2px solid #3A81C7;
+        border: 1px solid #3A81C7;
         border-radius: 12px;
         padding: 10px 18px;
         font-weight: 600;
@@ -54,6 +108,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+
 # Inject global styles
 with open("assets/styles.css") as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -63,41 +118,106 @@ st.markdown(f"""
     <h1 style="color:{primary_color}; font-weight:700; text-align:center; margin-bottom:0;">
         AI-Powered Exploratory Data Analysis
     </h1>
+    
+    
+    
     <p style="text-align:center; color:{secondary_color}; margin-top:5px;">
         Upload your dataset to get automated insights & interactive visualizations
     </p>
 """, unsafe_allow_html=True)
 
 # Custom Upload UI
+# st.markdown("""
+#     <style>
+#     .stFileUploader {
+#         display: flex;
+#         justify-content: center;
+#         margin-top: 30px;
+#     }
+
+#     .stFileUploader > div:first-child {
+#         border: 2px dashed #3A81C7;
+#         border-radius: 15px;
+#         background-color: #1E1E1E;
+#         color: white;
+#         padding: 20px 50px;
+#         font-weight: bold;
+#         font-size: 18px;
+#         text-align: center;
+#         box-shadow: 0 0 15px rgba(58,129,199,0.6);
+#         transition: all 0.3s ease;
+#     }
+
+#     .stFileUploader > div:first-child:hover {
+#         box-shadow: 0 0 20px rgba(58,129,199,1);
+#         background-color: #2a2d34;
+#     }
+#     </style>
+# """, unsafe_allow_html=True)
+
 st.markdown("""
     <style>
-    .stFileUploader {
-        display: flex;
-        justify-content: center;
-        margin-top: 30px;
+    /* Hide default text inside the uploader */
+    .stFileUploader label div:first-child {
+        visibility: hidden;
+        height: 0;
+        margin: 0;
+        padding: 0;
     }
 
-    .stFileUploader > div:first-child {
-        border: 2px dashed #3A81C7;
-        border-radius: 15px;
-        background-color: #1E1E1E;
+    /* Replace it with your custom text */
+    .stFileUploader label::after {
+        content: "Upload File";
         color: white;
-        padding: 20px 50px;
         font-weight: bold;
         font-size: 18px;
+        display: block;
         text-align: center;
+        padding: 20px 40px;
+        background-color: #1E1E1E;
+        border: 2px dashed #3A81C7;
+        border-radius: 15px;
         box-shadow: 0 0 15px rgba(58,129,199,0.6);
         transition: all 0.3s ease;
     }
 
-    .stFileUploader > div:first-child:hover {
-        box-shadow: 0 0 20px rgba(58,129,199,1);
+    .stFileUploader label:hover::after {
         background-color: #2a2d34;
+        box-shadow: 0 0 20px rgba(58,129,199,1);
+        cursor: pointer;
     }
     </style>
 """, unsafe_allow_html=True)
 
+
+
+
 uploaded_file = st.file_uploader("", type=["csv", "xlsx", "xls"], label_visibility="collapsed")
+
+# uploaded_file = st.file_uploader("", type=["csv", "xlsx", "xls"], label_visibility="collapsed")
+
+# df = None  # Initialize empty
+
+# if uploaded_file:
+#     filename = uploaded_file.name.lower()
+
+#     try:
+#         if filename.endswith(".csv"):
+#             df = pd.read_csv(uploaded_file)
+#         elif filename.endswith((".xlsx", ".xls")):
+#             df = pd.read_excel(uploaded_file)
+#         else:
+#             st.warning("❌ Unsupported file format. Please upload a `.csv`, `.xlsx`, or `.xls` file.")
+#             st.stop()
+
+#         # Only if successful parsing:
+#         st.success(f"{filename.split('.')[-1].upper()} file loaded successfully! Shape: {df.shape}")
+    
+#     except Exception as e:
+#         st.error(f"⚠️ Error loading file: {e}")
+#         st.stop()
+
+
 
 # Process uploaded file
 if uploaded_file:
