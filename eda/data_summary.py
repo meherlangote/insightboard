@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 def show_data_summary(df: pd.DataFrame):
-    st.header("Automatic Data Summary & Insights")
+    st.header("Data Summary & Insights")
 
     total_rows = df.shape[0]
 
@@ -39,6 +39,6 @@ def show_data_summary(df: pd.DataFrame):
 
         elif pd.api.types.is_object_dtype(df[col]):
             top_values = df[col].value_counts().head(3)
-            st.write(f"Top 3 categories:\n{top_values.to_frame()}")
+            st.write(f"Top categories:\n{top_values.to_frame()}")
 
         st.markdown("---")

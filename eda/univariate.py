@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+
 def show_univariate(df: pd.DataFrame):
     st.header("Univariate Analysis")
     
