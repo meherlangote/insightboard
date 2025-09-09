@@ -2,7 +2,8 @@ streamlit
 pandas
 numpy
 plotly
-scipy
-matplotlib
-seaborn
-jinja2
+scikit-learn
+umap-learn
+openpyxl
+kaleido        
+requests       
