@@ -1,9 +1,22 @@
+# Core
 streamlit
 pandas
 numpy
+
+# Visualization
 plotly
+matplotlib
+seaborn
+
+# Machine Learning / EDA
 scikit-learn
-umap-learn
-openpyxl
-kaleido        
-requests       
+scipy
+statsmodels
+
+# File Support
+openpyxl   # Excel files
+xlrd       # Older Excel format
+pyarrow    # Parquet support
+
+# Utils
+PyYAML     # Config management
