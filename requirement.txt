@@ -4,7 +4,7 @@ pandas
 numpy
 
 # Visualization
-plotly
+plotly==5.22.0
 matplotlib
 seaborn
 
